@@ -1,22 +1,34 @@
-import print_labels
+import printer
 import cli
 
 def main():
-    print_labels.intro()
+    printer.clear()
+    printer.intro()
+
     current_action = None
-    while action == None or action != :
+    while current_action == None or current_action != 0:
+        printer.actions()
         user_input = 0
         try:
-            user_input = int(input("> "))
+            user_input = input("> ")
+            if len(user_input) == 0:
+                printer.clear()
+                printer.error("You have to enter something")
+                print()
+                continue
+            user_input = int(user_input)
         except ValueError:
-            print("You have to enter an integer value")
+            printer.clear()
+            printer.error("You have to enter an integer value")
+            print()
             continue
         if user_input < 0 or user_input >= len(cli.ACTIONS):
-            print("You have to select a valid action")
+            printer.clear()
+            printer.error("You have to select a valid action")
+            print()
             continue
-        action = user_input
-        print(f"You chose '{cli.ACTIONS[action]}'")
-
+        current_action = user_input
+        cli.handle_actions(current_action)
 
 if __name__ == "__main__":
     main()
