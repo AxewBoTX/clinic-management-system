@@ -1,0 +1,12 @@
+- Start cleanly
+- Load existing data
+- Show menu
+- Add Nurse
+- Add Doctor
+- Add Patient
+- Record patient attendance
+- Launch dashboard
+- Display correct statistics
+- Close completely
+- Reopen
+- Show all previous data still present
