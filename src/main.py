@@ -1,7 +1,14 @@
+from clinic_manager import ClinicManager
 import printer
 import cli
 
 def main():
+    clinic_manager = ClinicManager()
+    clinic_manager.add_nurse(23, "Alice", 3)
+    clinic_manager.add_doctor(24, "Nick", 24000.0, 4)
+    clinic_manager.add_regular_patient("Cole", 735097797, 3)
+    clinic_manager.add_vip_patient("John", 73572307, 2, 2)
+
     printer.clear()
     printer.intro()
 
@@ -28,7 +35,7 @@ def main():
             print()
             continue
         current_action = user_input
-        cli.handle_actions(current_action)
+        cli.handle_actions(clinic_manager, current_action)
 
 if __name__ == "__main__":
     main()
