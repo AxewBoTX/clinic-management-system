@@ -6,7 +6,7 @@ WARNING = '\033[93m'
 FAIL = '\033[91m'
 BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
-ENDC = '\033[0m'
+END_FORMAT = '\033[0m'
 
 def clear():
     if os.name == "nt":
@@ -15,16 +15,16 @@ def clear():
         os.system('clear')
 
 def intro():
-    print(f"{'='*15} Welcome to the {UNDERLINE}Clinic Management System{ENDC} {'='*15}")
+    print(f"{'='*15} Welcome to the {BOLD}{UNDERLINE}Clinic Management System{END_FORMAT} {'='*15}")
     print()
 
 def actions():
-    print("What would you like to do ?")
     for i in range(0, len(cli.ACTIONS)):
         print(f"{i}. {cli.ACTIONS[i]}")
+    print()
+    print("What would you like to do ?")
 
 def info(input: str):
-    print(f"{INFO}{BOLD}{UNDERLINE}[INFO]{ENDC} " + input)
+    print(f"{INFO}{BOLD}{UNDERLINE}[INFO]{END_FORMAT} " + input)
 def error(input: str):
-    print(f"{FAIL}{BOLD}{UNDERLINE}[ERROR]{ENDC} " + input)
-
+    print(f"{FAIL}{BOLD}{UNDERLINE}[ERROR]{END_FORMAT} " + input)

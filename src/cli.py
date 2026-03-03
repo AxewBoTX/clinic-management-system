@@ -4,21 +4,23 @@ import printer
 ACTIONS = [
     "Exit",
     "Help",
-    "Add Nurse",
-    "Add Doctor",
+    "Add Staff",
     "Add Patient",
-    "Record Patient Attendance",
-    "Launch Dashboard"
+    "Search By Name",
+    "List Staff",
+    "List Patients",
+    "Record Patient Attended by a Specific Nurse",
+    "Launch Dashboard",
 ]
 
-def handle_actions(action: int):
+def handle_actions(action):
     if action == 0:
         printer.clear()
         print("Saving...")
         print("See you later!")
     elif action == 1:
         printer.clear()
-    elif action == 6:
+    elif action == 8:
         printer.clear()
         root = tk.Tk()
         root.title("Clinic Management System")
@@ -36,5 +38,5 @@ def handle_actions(action: int):
         printer.clear()
     else:
         printer.clear()
-        print(f"You chose {printer.UNDERLINE}{ACTIONS[action]}{printer.ENDC}")
+        print(f"You chose {printer.UNDERLINE}{ACTIONS[action]}{printer.END_FORMAT}")
         print()
