@@ -7,6 +7,11 @@ class ClinicManager:
         self.staff = {}
         self.patients = {}
 
+    def save_data():
+        pass
+    def load_data():
+        pass
+
     def add_nurse(self, staff_id, name, hours_worked=0):
         if name in self.staff:
             return False
@@ -38,3 +43,8 @@ class ClinicManager:
         patient.add_visits(visits)
         self.patients[name] = patient
         return True
+
+    def search_by_name():
+        pass
+    def record_patient_attendance():
+        pass

@@ -1,11 +1,13 @@
+from abc import ABC, abstractmethod
 import printer
 
-class MedicalStaff:
+class MedicalStaff(ABC):
     def __init__(self, name, staff_id):
         self.name = name
         self.staff_id = staff_id
         self.hours_worked = 0
 
+    @abstractmethod
     def get_type(self):
         pass
 

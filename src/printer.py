@@ -1,4 +1,4 @@
-import cli
+import actions
 import os
 
 INFO = '\033[96m'
@@ -18,9 +18,9 @@ def intro():
     print(f"{'='*15} Welcome to the {BOLD}{UNDERLINE}Clinic Management System{END_FORMAT} {'='*15}")
     print()
 
-def actions():
-    for i in range(0, len(cli.ACTIONS)):
-        print(f"{i}. {cli.ACTIONS[i]}")
+def print_actions():
+    for i in range(0, len(actions.ACTIONS)):
+        print(f"{i}. {actions.ACTIONS[i]}")
     print()
     print("What would you like to do ?")
 
