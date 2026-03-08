@@ -1,7 +1,7 @@
-import tkinter as tk
-import printer
-
 def handle_dashboard(clinic_manager):
+    import tkinter as tk
+    import printer
+
     printer.clear()
     root = tk.Tk()
     root.title("Clinic Management System")
@@ -12,7 +12,7 @@ def handle_dashboard(clinic_manager):
         root,
         text="Click Me",
         font=("Arial", 14),
-        command=lambda: printer.info("You just clicked a button")
+        command=lambda: printer.info("You just clicked a button"),
     )
     button.pack(pady=20)
     root.mainloop()

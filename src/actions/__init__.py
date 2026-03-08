@@ -1,6 +1,3 @@
-from . import dashboard, list_patients, list_staff, add_staff, add_patient, search, record_patient
-import printer
-
 ACTIONS = [
     "Exit",
     "Help",
@@ -13,7 +10,19 @@ ACTIONS = [
     "Launch Dashboard",
 ]
 
+
 def handle_actions(clinic_manager, action):
+    from . import (
+        dashboard,
+        list_patients,
+        list_staff,
+        add_staff,
+        add_patient,
+        search,
+        record_patient,
+    )
+    import printer
+
     if action == 0:
         printer.clear()
         print("Saving...")

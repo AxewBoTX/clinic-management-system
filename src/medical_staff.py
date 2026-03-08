@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import printer
 
+
 class MedicalStaff(ABC):
     def __init__(self, name, staff_id):
         self.name = name
@@ -14,6 +15,7 @@ class MedicalStaff(ABC):
     def add_hours(self, hours_worked):
         self.hours_worked += hours_worked
 
+
 class Nurse(MedicalStaff):
     def __init__(self, name, staff_id):
         super().__init__(name, staff_id)
@@ -21,6 +23,10 @@ class Nurse(MedicalStaff):
 
     def get_type(self):
         return "nurse"
+
+    def record_patient_attendance(self, value=1):
+        self.patients_attended_today += value
+
 
 class Doctor(MedicalStaff):
     def __init__(self, name, staff_id, shift_budget):

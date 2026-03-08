@@ -14,6 +14,8 @@
       env = pkg.withPackages (pp:
         with pp; [
           pkg
+		  rich
+		  python-slugify
           tkinter
         ]);
     };

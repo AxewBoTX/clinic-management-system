@@ -1,9 +1,11 @@
-import printer
-
 def handle_add_patient(clinic_manager) -> bool:
+    import printer
+
     try:
         printer.clear()
-        print(f"{'='*15} {printer.BOLD}{printer.UNDERLINE}Add Patient{printer.END_FORMAT} {'='*15}")
+        print(
+            f"{'='*15} {printer.BOLD}{printer.UNDERLINE}Add Patient{printer.END_FORMAT} {'='*15}"
+        )
         print()
         print("1. VIP")
         print("2. Regular")
@@ -15,18 +17,20 @@ def handle_add_patient(clinic_manager) -> bool:
             return False
         print()
 
-        contact_details = input("Contact Details: ")
+        patient_id = input("Patient ID: ")
         patient_name = input("Name: ")
-        visits = int(input("Visits: "))
+        contact_details = input("Contact Details: ")
         if patient_input == 2:
             priority_rank = int(input("Priority Rank: "))
             printer.clear()
-            clinic_manager.add_vip_patient(patient_name, contact_details, visits, priority_rank)
-            printer.info(f"Added VIP Patient: ({patient_name}, {contact_details}, {visits}, {priority_rank})")
+            clinic_manager.add_vip_patient(patient_name, contact_details, priority_rank)
+            printer.info(
+                f"Added VIP Patient: ({patient_name}, {contact_details}, {priority_rank})"
+            )
         else:
             printer.clear()
-            clinic_manager.add_regular_patient(patient_name, contact_details, visits)
-            printer.info(f"Added Regular Patient: ({patient_name}, {contact_details}, {visits})")
+            clinic_manager.add_regular_patient(patient_name, contact_details)
+            printer.info(f"Added Regular Patient: ({patient_name}, {contact_details})")
         return True
     except ValueError:
         return False
