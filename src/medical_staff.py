@@ -31,7 +31,6 @@ class Nurse(MedicalStaff):
 class Doctor(MedicalStaff):
     def __init__(self, name, staff_id, shift_budget):
         super().__init__(name, staff_id)
-        self.patients_attended_today = 0
         self.shift_budget = shift_budget
 
     def get_type(self):

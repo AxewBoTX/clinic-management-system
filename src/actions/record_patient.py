@@ -9,8 +9,8 @@ def handle_record_patient(clinic_manager):
         print()
 
         staff_id = int(input("Staff ID: "))
-        patient_num = int(input("Total Patients: "))
-        result = clinic_manager.record_patient_attendance(staff_id, patient_num)
+        patient_id = int(input("Patient ID: "))
+        result = clinic_manager.record_patient_attendance(staff_id, patient_id)
         if result is True:
             printer.clear()
             printer.info("Successfully record patient attendance")
@@ -18,7 +18,7 @@ def handle_record_patient(clinic_manager):
         else:
             printer.clear()
             printer.error(
-                "Failed to record patient attendance, either the STAFF_ID was incorrect or the corresponding staff is not a Nurse"
+                "Failed to record patient attendance, either the STAFF_ID\PATIENT_ID was incorrect or the corresponding staff is not a Nurse"
             )
             print()
     except ValueError:

@@ -44,23 +44,21 @@ class ClinicManager:
         self.staff[doctor.staff_id] = doctor
         return None
 
-    def add_regular_patient(self, patient_id, name, contact_details, visits):
+    def add_regular_patient(self, patient_id, name, contact_details):
         for curr_patient in self.patients.values():
             if curr_patient.patient_id == patient_id:
                 return curr_patient
 
         patient = RegularPatient(name, patient_id, contact_details)
-        patient.add_visits(visits)
         self.patients[patient_id] = patient
         return None
 
-    def add_vip_patient(self, patient_id, name, contact_details, visits, priority_rank):
+    def add_vip_patient(self, patient_id, name, contact_details, priority_rank):
         for curr_patient in self.patients.values():
             if curr_patient.patient_id == patient_id:
                 return curr_patient
 
         patient = VIPPatient(name, patient_id, contact_details, priority_rank)
-        patient.add_visits(visits)
         self.patients[patient_id] = patient
         return None
 
@@ -76,13 +74,55 @@ class ClinicManager:
 
         return search_results
 
-    def record_patient_attendance(self, staff_id, patient_num):
+    def record_patient_attendance(self, staff_id, patient_id):
         if staff_id in self.staff:
-            item = self.staff[staff_id]
-            if isinstance(item, Nurse):
-                item.record_patient_attendance(patient_num)
-                return True
+            staff = self.staff[staff_id]
+            if isinstance(staff, Nurse):
+                if patient_id in self.patients:
+                    patient = self.patients[patient_id]
+                    staff.record_patient_attendance(1)
+                    patient.add_visits(1)
+                    return True
+                else:
+                    False
             else:
-                False
+                return False
         else:
             return False
+
+    def generate_daily_report(self) -> dict:
+        output = {}
+
+        output["total_staff"] = len(self.staff)
+
+        nurse_count = 0
+        patients_attended_today = 0
+        top_nurse = None
+        for curr_staff in self.staff.values():
+            if isinstance(curr_staff, Nurse):
+                nurse_count += 1
+                patients_attended_today += curr_staff.patients_attended_today
+            if top_nurse is None:
+                top_nurse = curr_staff
+            else:
+                if curr_staff.patients_attended_today > top_nurse.patients_attended_today:
+                    top_nurse = curr_staff
+        output["nurses"] = nurse_count
+        output["patients_attended"] = patients_attended_today
+        output["top_nurse"] = top_nurse.name
+
+        doctor_count = 0
+        for curr_staff in self.staff.values():
+            if isinstance(curr_staff, Doctor):
+                doctor_count += 1
+        output["doctors"] = doctor_count
+
+        output["total_patients"] = len(self.patients)
+
+        vip_patient_count = 0
+        for curr_patient in self.patients.values():
+            if isinstance(curr_patient, VIPPatient):
+                vip_patient_count += 1
+        output["vip_patients"] = vip_patient_count
+
+        return output

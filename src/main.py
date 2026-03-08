@@ -2,7 +2,6 @@ from clinic_manager import ClinicManager
 import printer
 import actions
 
-
 def main():
     clinic_manager = ClinicManager()
     clinic_manager.load_data()

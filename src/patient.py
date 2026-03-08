@@ -3,7 +3,7 @@ class Patient:
         self.name = name
         self.patient_id = patient_id
         self.contact_details = contact_details
-        self.visits = 0
+        self.visits = 1
 
     def get_type(self):
         pass
