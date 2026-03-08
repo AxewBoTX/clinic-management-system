@@ -28,7 +28,7 @@ def handle_list_staff(clinic_manager):
                 curr_staff.get_type().title(),
                 str(curr_staff.hours_worked),
                 str(budget),
-                attendance
+                attendance,
             )
         console.print(table)
     print()

@@ -1,5 +1,5 @@
 ACTIONS = [
-    "Exit",
+    "Save and Exit",
     "Help",
     "Add Staff",
     "Add Patient",
@@ -26,6 +26,7 @@ def handle_actions(clinic_manager, action):
     if action == 0:
         printer.clear()
         print("Saving...")
+        clinic_manager.save_data()
         print("See you later!")
     elif action == 1:
         printer.clear()

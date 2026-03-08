@@ -17,7 +17,9 @@ def handle_record_patient(clinic_manager):
             print()
         else:
             printer.clear()
-            printer.error("Failed to record patient attendance, either the STAFF_ID was incorrect or the corresponding staff is not a Nurse")
+            printer.error(
+                "Failed to record patient attendance, either the STAFF_ID was incorrect or the corresponding staff is not a Nurse"
+            )
             print()
     except ValueError:
         printer.clear()

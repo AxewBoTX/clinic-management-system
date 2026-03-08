@@ -1,19 +1,28 @@
+import pickle
 from medical_staff import Nurse, Doctor
 from slugify import slugify
 from patient import RegularPatient, VIPPatient
 
 
 class ClinicManager:
-    def __init__(self, clinic_name="My Clinic"):
-        self.clinic_name = clinic_name
+    def __init__(self):
         self.staff = {}
         self.patients = {}
 
-    def save_data():
-        pass
+    def save_data(self, file_name="clinic_data.pkl"):
+        data = {"staff": self.staff, "patients": self.patients}
+        with open(file_name, "wb") as file:
+            pickle.dump(data, file)
 
-    def load_data():
-        pass
+    def load_data(self, file_name="clinic_data.pkl"):
+        try:
+            with open(file_name, "rb") as file:
+                data = pickle.load(file)
+                self.staff = data.get("staff", {})
+                self.patients = data.get("patients", {})
+        except FileNotFoundError:
+            self.staff = {}
+            self.patients = {}
 
     def add_nurse(self, staff_id, name, hours_worked=0):
         for curr_staff in self.staff.values():

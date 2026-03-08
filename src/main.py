@@ -5,10 +5,7 @@ import actions
 
 def main():
     clinic_manager = ClinicManager()
-    clinic_manager.add_nurse(23, "Alice", 3)
-    clinic_manager.add_doctor(24, "Nick", 24000.0, 4)
-    clinic_manager.add_regular_patient(12, "Cole", 3, 2)
-    clinic_manager.add_vip_patient(22, "John", 2, 2, 2)
+    clinic_manager.load_data()
 
     printer.clear()
     printer.intro()
