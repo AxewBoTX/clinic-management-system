@@ -1,14 +1,16 @@
+"""
+printer.py - provides printing related functions
+
+Cole, Mia: s8248723
+Matta, Ishi: s8239982
+Singh, Lovedeep: s8208559
+"""
+
 import actions
 import os
+import colors
 
-INFO = "\033[96m"
-WARNING = "\033[93m"
-FAIL = "\033[91m"
-BOLD = "\033[1m"
-UNDERLINE = "\033[4m"
-END_FORMAT = "\033[0m"
-
-
+# clear the screen, if supported by wherever the program is being run
 def clear():
     if os.name == "nt":
         os.system("cls")
@@ -16,13 +18,15 @@ def clear():
         os.system("clear")
 
 
+# print the introduction label
 def intro():
     print(
-        f"{'='*15} Welcome to the {BOLD}{UNDERLINE}Clinic Management System{END_FORMAT} {'='*15}"
+        f"{'='*15} Welcome to the Clinic Management System {'='*15}"
     )
     print()
 
 
+# print the available actions
 def print_actions():
     for i in range(0, len(actions.ACTIONS)):
         print(f"{i}. {actions.ACTIONS[i]}")
@@ -30,9 +34,22 @@ def print_actions():
     print("What would you like to do ?")
 
 
-def info(input: str):
-    print(f"{INFO}{BOLD}{UNDERLINE}[INFO]{END_FORMAT} " + input)
+# log successfull events
+def success(user_input):
+    from rich import print
+
+    print(f"[{colors.GREEN}][SUCCESS][/{colors.GREEN}] {user_input}")
 
 
-def error(input: str):
-    print(f"{FAIL}{BOLD}{UNDERLINE}[ERROR]{END_FORMAT} " + input)
+# log information
+def info(user_input):
+    from rich import print
+
+    print(f"[{colors.BLUE}][INFO][/{colors.BLUE}] {user_input}")
+
+
+# log error
+def error(user_input):
+    from rich import print
+
+    print(f"[{colors.RED}][ERROR][/{colors.RED}] {user_input}")

@@ -30,5 +30,16 @@
       buildInputs = [];
       shellHook = "zsh";
     };
+	packages.${system}.release = pkgs.stdenv.mkDerivation rec {
+		name = "23_Assessment3_ClinicSystem";
+		dontUnpack = true;
+		nativeBuildInputs = [pkgs.zip];
+		installPhase = ''
+		  mkdir -p $out/stage
+		  cp -r ${./.}/* $out/stage/
+		  cd $out/stage/
+		  zip -r $out/${name}.zip ./src ./README.txt
+		'';
+	  };
   };
 }
